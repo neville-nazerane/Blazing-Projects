@@ -11,8 +11,8 @@ KillSignal=SIGINT
 SyslogIdentifier=blazingProj
 User=www-data
 Environment=ASPNETCORE_ENVIRONMENT=Production
-Environment=connectionStrings__sqlDb='#{confg.sqlDb}#'
-Environment=signalr='#{confg.signalr}#'
+Environment=connectionStrings__sqlDb='#{config.sqlDb}#'
+Environment=signalr='#{config.signalr}#'
 
 [Install]
 WantedBy=multi-user.target
