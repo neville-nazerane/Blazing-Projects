@@ -19,5 +19,8 @@ namespace BlazingProjects.Core.Entities
         public DateTime CreatedOn { get; set; }
 
         public DateTime? UpdatedOn { get; set; }
+
+        public IEnumerable<CardSection> CardSections { get; set; }
+
     }
 }

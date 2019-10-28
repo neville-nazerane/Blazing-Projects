@@ -23,5 +23,7 @@ namespace BlazingProjects.Core.Entities
 
         public IEnumerable<Card> Cards { get; set; }
 
+        public Project Project { get; set; }
+
     }
 }
