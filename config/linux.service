@@ -12,6 +12,7 @@ SyslogIdentifier=blazingProj
 User=www-data
 Environment=ASPNETCORE_ENVIRONMENT=Production
 Environment=connectionStrings__sqlDb='#{confg.sqlDb}#'
+Environment=signalr='#{confg.signalr}#'
 
 [Install]
 WantedBy=multi-user.target
