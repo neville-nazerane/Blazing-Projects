@@ -5,7 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BlazingProjects.DataAccess.Repositories
@@ -19,36 +21,37 @@ namespace BlazingProjects.DataAccess.Repositories
             _context = context;
         }
 
-        public async Task<Project> AddAsync(ProjectAdd toAdd)
+        public async Task<Project> AddAsync(ProjectAdd toAdd, CancellationToken cancellationToken = default)
         {
             var project = toAdd.ToEntity();
             project.CreatedOn = DateTime.UtcNow;
-            project.Order = await _context.Projects.DefaultIfEmpty().MaxAsync(p => p.Order) + 1;
-            await _context.AddAsync(project);
-            await _context.SaveChangesAsync();
+            project.Order = await _context.Projects.DefaultIfEmpty().MaxAsync(p => p.Order, cancellationToken) + 1;
+            await _context.AddAsync(project, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
             return project;
         }
 
-        public async Task<Project> UpdateAsync(ProjectUpdate toUpdate)
+        public async Task<Project> UpdateAsync(ProjectUpdate toUpdate, CancellationToken cancellationToken = default)
         {
-            var project = await _context.Projects.SingleAsync(p => p.Id == toUpdate.Id);
+            var project = await _context.Projects.SingleAsync(p => p.Id == toUpdate.Id, cancellationToken);
             project.UpdateFrom(toUpdate);
             project.UpdatedOn = DateTime.UtcNow;
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(cancellationToken);
             return project;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id, CancellationToken cancellationToken = default)
         {
-            var project = await _context.Projects.SingleAsync(p => p.Id == id);
+            var project = await _context.Projects.SingleAsync(p => p.Id == id, cancellationToken);
             _context.Remove(project);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public async IAsyncEnumerable<Project> GetAllAsync() 
-            => await _context.Projects.AsNoTracking().OrderBy(p => p.Order).ToListAsync();
+        public async IAsyncEnumerable<Project> GetAllAsync([EnumeratorCancellation]CancellationToken cancellationToken = default) 
+            => await _context.Projects.AsNoTracking().OrderBy(p => p.Order).ToListAsync(cancellationToken);
 
-        public async Task<Project> GetAsync(int id) => await _context.Projects.AsNoTracking().SingleOrDefaultAsync(p => p.Id == id);
+        public async Task<Project> GetAsync(int id, CancellationToken cancellationToken = default) 
+            => await _context.Projects.AsNoTracking().SingleOrDefaultAsync(p => p.Id == id, cancellationToken);
 
     }
 }

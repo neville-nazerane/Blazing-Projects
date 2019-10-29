@@ -19,7 +19,6 @@ namespace BlazingProjects.Core.Entities
         [Required]
         public int Order { get; set; }
 
-
         [Required]
         public DateTime CreatedOn { get; set; }
 
