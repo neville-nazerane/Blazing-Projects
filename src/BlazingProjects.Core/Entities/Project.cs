@@ -10,6 +10,7 @@ namespace BlazingProjects.Core.Entities
 
         public int Id { get; set; }
 
+        [Required, MaxLength(60)]
         public string Title { get; set; }
 
         [Required]
