@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlazingProjects.DataAccess
+namespace BlazingProjects.DataAccess.Repositories
 {
     class ProjectRepository
     {
@@ -31,7 +31,7 @@ namespace BlazingProjects.DataAccess
 
         public async Task<Project> UpdateAsync(ProjectUpdate toUpdate)
         {
-            var project = await GetProjectInternalAsync(toUpdate.Id);
+            var project = await _context.Projects.SingleAsync(p => p.Id == toUpdate.Id);
             project.UpdateFrom(toUpdate);
             project.UpdatedOn = DateTime.UtcNow;
             await _context.SaveChangesAsync();
@@ -40,16 +40,15 @@ namespace BlazingProjects.DataAccess
 
         public async Task DeleteAsync(int id)
         {
-            var project = await GetProjectInternalAsync(id);
+            var project = await _context.Projects.SingleAsync(p => p.Id == id);
             _context.Remove(project);
             await _context.SaveChangesAsync();
         }
 
-        public async IAsyncEnumerable<Project> GetAllAsync() => await _context.Projects.AsNoTracking().ToListAsync();
+        public async IAsyncEnumerable<Project> GetAllAsync() 
+            => await _context.Projects.AsNoTracking().OrderBy(p => p.Order).ToListAsync();
 
         public async Task<Project> GetAsync(int id) => await _context.Projects.AsNoTracking().SingleOrDefaultAsync(p => p.Id == id);
-
-        private async Task<Project> GetProjectInternalAsync(int id) => await _context.Projects.SingleAsync(p => p.Id == id);
 
     }
 }
