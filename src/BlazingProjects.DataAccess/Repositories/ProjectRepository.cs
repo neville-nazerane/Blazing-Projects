@@ -47,7 +47,7 @@ namespace BlazingProjects.DataAccess.Repositories
             await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public async IAsyncEnumerable<Project> GetAllAsync([EnumeratorCancellation]CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<Project>> GetAllAsync(CancellationToken cancellationToken = default)
             => await _context.Projects.AsNoTracking().OrderBy(p => p.Order).ToListAsync(cancellationToken);
 
         public async Task<Project> GetAsync(int id, CancellationToken cancellationToken = default)

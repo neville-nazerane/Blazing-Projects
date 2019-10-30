@@ -11,7 +11,7 @@ namespace BlazingProjects.DataAccess.Repositories
     {
         Task<Card> AddAsync(CardAdd toAdd, CancellationToken cancellationToken = default);
         Task DeleteAsync(int id, CancellationToken cancellationToken = default);
-        IAsyncEnumerable<Card> GetAllAsync([EnumeratorCancellation] CancellationToken cancellationToken = default);
+        Task<IEnumerable<Card>> GetAllAsync( CancellationToken cancellationToken = default);
         Task<Card> GetAsync(int id, CancellationToken cancellationToken = default);
         Task<Card> UpdateAsync(CardUpdate toUpdate, CancellationToken cancellationToken = default);
     }

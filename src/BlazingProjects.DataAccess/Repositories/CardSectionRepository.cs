@@ -47,7 +47,7 @@ namespace BlazingProjects.DataAccess.Repositories
             await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public async IAsyncEnumerable<CardSection> GetAllAsync([EnumeratorCancellation]CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<CardSection>> GetAllAsync(CancellationToken cancellationToken = default)
             => await _context.CardSections.AsNoTracking().OrderBy(c => c.Order).ToListAsync(cancellationToken);
 
         public async Task<CardSection> GetAsync(int id, CancellationToken cancellationToken = default)
