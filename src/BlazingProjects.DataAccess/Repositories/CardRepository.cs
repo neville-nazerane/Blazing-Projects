@@ -12,7 +12,7 @@ using System.Runtime.CompilerServices;
 
 namespace BlazingProjects.DataAccess.Repositories
 {
-    class CardRepository
+    class CardRepository : ICardRepository
     {
         private readonly AppDbContext _context;
 
@@ -47,10 +47,10 @@ namespace BlazingProjects.DataAccess.Repositories
             await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task<Card> GetAsync(int id, CancellationToken cancellationToken = default) 
+        public async Task<Card> GetAsync(int id, CancellationToken cancellationToken = default)
             => await _context.Cards.AsNoTracking().SingleOrDefaultAsync(c => c.Id == id, cancellationToken);
 
-        public async IAsyncEnumerable<Card> GetAllAsync([EnumeratorCancellation]CancellationToken cancellationToken = default) 
+        public async IAsyncEnumerable<Card> GetAllAsync([EnumeratorCancellation]CancellationToken cancellationToken = default)
             => await _context.Cards.AsNoTracking().OrderBy(c => c.Order).ToListAsync(cancellationToken);
 
     }

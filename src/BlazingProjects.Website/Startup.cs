@@ -29,7 +29,9 @@ namespace BlazingProjects.Website
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
             services.AddSignalR().AddAzureSignalR(Configuration["signalr"]);
+
             services.AddDatabaseConfig(Configuration.GetConnectionString("sqlDb"));
+            services.AddRepositories();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

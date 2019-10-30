@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BlazingProjects.DataAccess.Repositories
 {
-    class ProjectRepository
+    class ProjectRepository : IProjectRepository
     {
         private readonly AppDbContext _context;
 
@@ -47,10 +47,10 @@ namespace BlazingProjects.DataAccess.Repositories
             await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public async IAsyncEnumerable<Project> GetAllAsync([EnumeratorCancellation]CancellationToken cancellationToken = default) 
+        public async IAsyncEnumerable<Project> GetAllAsync([EnumeratorCancellation]CancellationToken cancellationToken = default)
             => await _context.Projects.AsNoTracking().OrderBy(p => p.Order).ToListAsync(cancellationToken);
 
-        public async Task<Project> GetAsync(int id, CancellationToken cancellationToken = default) 
+        public async Task<Project> GetAsync(int id, CancellationToken cancellationToken = default)
             => await _context.Projects.AsNoTracking().SingleOrDefaultAsync(p => p.Id == id, cancellationToken);
 
     }

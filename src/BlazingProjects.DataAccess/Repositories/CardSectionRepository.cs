@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BlazingProjects.DataAccess.Repositories
 {
-    class CardSectionRepository
+    class CardSectionRepository : ICardSectionRepository
     {
         private readonly AppDbContext _context;
 
