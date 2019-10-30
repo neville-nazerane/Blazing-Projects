@@ -12,7 +12,7 @@ using System.Runtime.CompilerServices;
 
 namespace BlazingProjects.DataAccess.Repositories
 {
-    class CardRepository : ICardRepository
+    class CardRepository //: ICardRepository
     {
         private readonly AppDbContext _context;
 

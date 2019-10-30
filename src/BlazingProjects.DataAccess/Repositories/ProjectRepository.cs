@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BlazingProjects.DataAccess.Repositories
 {
-    class ProjectRepository : IProjectRepository
+    class ProjectRepository //: IProjectRepository
     {
         private readonly AppDbContext _context;
 

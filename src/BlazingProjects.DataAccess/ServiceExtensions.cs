@@ -18,9 +18,10 @@ namespace Microsoft.Extensions.DependencyInjection
 
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
-            return services.AddScoped<ICardRepository, CardRepository>()
-                        .AddScoped<ICardSectionRepository, CardSectionRepository>()
-                        .AddScoped<IProjectRepository, ProjectRepository>();
+            return services; 
+            //.AddScoped<ICardRepository, CardRepository>()
+            //            .AddScoped<ICardSectionRepository, CardSectionRepository>()
+            //            .AddScoped<IProjectRepository, ProjectRepository>();
         }
 
     }
