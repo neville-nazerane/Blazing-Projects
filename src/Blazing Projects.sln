@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazingProjects.Website", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazingProjects.Core", "BlazingProjects.Core\BlazingProjects.Core.csproj", "{D4FCBED3-416C-4D34-83DD-96CA703E65D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazingProjects.DataAccess", "BlazingProjects.DataAccess\BlazingProjects.DataAccess.csproj", "{433A5272-E508-4A88-980E-C6EB305B4E52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazingProjects.DataAccess", "BlazingProjects.DataAccess\BlazingProjects.DataAccess.csproj", "{433A5272-E508-4A88-980E-C6EB305B4E52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BlazingProjects.Website.Data;
+using BlazingProjects.Website.Helpers;
 
 namespace BlazingProjects.Website
 {
@@ -31,7 +32,8 @@ namespace BlazingProjects.Website
             services.AddSignalR().AddAzureSignalR(Configuration["signalr"]);
 
             services.AddDatabaseConfig(Configuration.GetConnectionString("sqlDb"));
-            services.AddRepositories();
+            services.AddRepositories()
+                    .AddScoped<ScopeControl>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

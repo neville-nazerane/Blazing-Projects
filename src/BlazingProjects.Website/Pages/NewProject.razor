@@ -1,0 +1,14 @@
+﻿@inherits NewProjectVM
+@page "/newProject"
+
+<EditForm Model=ProjectAdd OnValidSubmit=AddAsync>
+
+    <DataAnnotationsValidator />
+    
+    <InputText @bind-Value=ProjectAdd.Title />
+
+    <button type="submit">Add</button>
+
+    <ValidationSummary />
+
+</EditForm>

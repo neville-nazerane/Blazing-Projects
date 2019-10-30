@@ -7,7 +7,7 @@ using BlazingProjects.Core.Models;
 
 namespace BlazingProjects.DataAccess.Repositories
 {
-    interface IProjectRepository
+    public interface IProjectRepository
     {
         Task<Project> AddAsync(ProjectAdd toAdd, CancellationToken cancellationToken = default);
         Task DeleteAsync(int id, CancellationToken cancellationToken = default);

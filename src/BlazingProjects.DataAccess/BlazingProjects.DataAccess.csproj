@@ -12,7 +12,7 @@
     <ProjectReference Include="..\BlazingProjects.Core\BlazingProjects.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='release'">
     <Compile Remove="Migrations\**" />
   </ItemGroup>
 

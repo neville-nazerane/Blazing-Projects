@@ -25,7 +25,7 @@ namespace BlazingProjects.DataAccess.Repositories
         {
             var project = toAdd.ToEntity();
             project.CreatedOn = DateTime.UtcNow;
-            project.Order = await _context.Projects.DefaultIfEmpty().MaxAsync(p => p.Order, cancellationToken) + 1;
+            project.Order = await _context.Projects.MaxAsync(p => (int?)p.Order, cancellationToken) ?? 0 + 1;
             await _context.AddAsync(project, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
             return project;
