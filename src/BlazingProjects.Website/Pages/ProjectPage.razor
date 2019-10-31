@@ -1,0 +1,11 @@
+﻿@inherits ProjectPageVM
+@page "/project/{ProjectId:int}"
+
+@if (Project == null)
+{
+    <div>Loading...</div>
+}
+else
+{
+    <h1>@Project.Title</h1>
+}
