@@ -22,11 +22,11 @@ namespace BlazingProjects.Website.Pages
 
         private IProjectRepository ProjectRepository => Control.GetService<IProjectRepository>();
 
-        protected override async Task OnInitializedAsync()
+        protected override async Task OnParametersSetAsync()
         {
             Project = await ProjectRepository.GetAsync(ProjectId);
             Control.ClearScope();
-            await base.OnInitializedAsync();
+            await base.OnParametersSetAsync();
         }
 
     }
