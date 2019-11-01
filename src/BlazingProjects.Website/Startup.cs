@@ -33,7 +33,7 @@ namespace BlazingProjects.Website
 
             services.AddDatabaseConfig(Configuration.GetConnectionString("sqlDb"));
             services.AddRepositories()
-                    .AddScoped<ScopeControl>();
+                    .AddTransient<ScopeControl>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
