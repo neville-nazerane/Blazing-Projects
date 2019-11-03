@@ -2,6 +2,7 @@
 using BlazingProjects.Core.Models;
 using BlazingProjects.DataAccess.Repositories;
 using BlazingProjects.Website.Helpers;
+using BlazingProjects.Website.Models;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
@@ -16,13 +17,14 @@ namespace BlazingProjects.Website.Shared
         [Inject]
         public ScopeControl Control { get; set; }
 
+        [CascadingParameter]
+        public NavigationContext NavigationContext { get; set; }
+
         public IProjectRepository ProjectRepository => Control.GetService<IProjectRepository>();
 
         public ICollection<Project> Projects { get; set; }
 
         public bool IsAddShown { get; set; }
-
-        public ProjectAdd ProjectAdd { get; set; }
 
         protected bool collapseNavMenu = true;
 
@@ -35,16 +37,22 @@ namespace BlazingProjects.Website.Shared
 
         protected override async Task OnInitializedAsync()
         {
-            ProjectAdd = new ProjectAdd();
-            Projects = (await ProjectRepository.GetAllAsync()).ToList();
-            await base.OnInitializedAsync();
+            await MenuUpdatedAsync();
             Control.ClearScope();
+            await base.OnInitializedAsync();
         }
 
-        protected async Task AddAsync()
+        protected override void OnParametersSet()
         {
-            await ProjectRepository.AddAsync(ProjectAdd);
-            Control.ClearScope();
+            if (NavigationContext != null)
+                NavigationContext.OnMenuUpdatedAsync = MenuUpdatedAsync;
+            base.OnParametersSet();
+        }
+
+        private async Task MenuUpdatedAsync(ScopeControl control = null)
+        {
+            if (control is null) control = Control;
+            Projects = (await control.GetService<IProjectRepository>().GetAllAsync()).ToList();
         }
 
     }

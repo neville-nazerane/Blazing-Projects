@@ -1,6 +1,7 @@
 ﻿using BlazingProjects.Core.Models;
 using BlazingProjects.DataAccess.Repositories;
 using BlazingProjects.Website.Helpers;
+using BlazingProjects.Website.Models;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,9 @@ namespace BlazingProjects.Website.Pages
 
         [Inject]
         public ScopeControl Control { get; set; }
+
+        [CascadingParameter]
+        public NavigationContext NavigationContext { get; set; }
 
         [Inject]
         public NavigationManager NavigationManager { get; set; }
@@ -32,6 +36,7 @@ namespace BlazingProjects.Website.Pages
         {
             var project = await ProjectRepository.AddAsync(ProjectAdd);
             ProjectAdd = new ProjectAdd();
+       //     await NavigationContext.OnMenuUpdatedAsync(Control);
             Control.ClearScope();
             NavigationManager.NavigateTo("/project/" + project.Id);
         }

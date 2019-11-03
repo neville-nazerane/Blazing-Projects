@@ -18,5 +18,10 @@ namespace BlazingProjects.DataAccess
         {
         }
 
+        public override void Dispose()
+        {
+            base.Dispose();
+        }
+
     }
 }

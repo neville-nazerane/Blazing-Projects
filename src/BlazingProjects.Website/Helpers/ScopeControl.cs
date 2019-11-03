@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace BlazingProjects.Website.Helpers
 {
-    public class ScopeControl
+    public class ScopeControl : IDisposable
     {
 
         private readonly IServiceProvider _serviceProvider;
@@ -27,8 +27,13 @@ namespace BlazingProjects.Website.Helpers
 
         public void ClearScope()
         {
-            _serviceScope.Dispose();
+            _serviceScope?.Dispose();
             _serviceScope = null;
+        }
+
+        public void Dispose()
+        {
+            ClearScope();
         }
     }
 }
