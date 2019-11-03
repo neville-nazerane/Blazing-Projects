@@ -32,11 +32,16 @@ namespace BlazingProjects.Website.Pages
             base.OnInitialized();
         }
 
+        protected override void OnParametersSet()
+        {
+            base.OnParametersSet();
+        }
+
         protected async Task AddAsync()
         {
             var project = await ProjectRepository.AddAsync(ProjectAdd);
             ProjectAdd = new ProjectAdd();
-       //     await NavigationContext.OnMenuUpdatedAsync(Control);
+            await NavigationContext.OnMenuUpdatedAsync(Control);
             Control.ClearScope();
             NavigationManager.NavigateTo("/project/" + project.Id);
         }
