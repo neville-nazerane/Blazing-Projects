@@ -15,6 +15,9 @@ namespace BlazingProjects.Website.Pages
         [Inject]
         public ScopeControl Control { get; set; }
 
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
+
         public IProjectRepository ProjectRepository => Control.GetService<IProjectRepository>();
 
         public ProjectAdd ProjectAdd { get; set; }
@@ -27,9 +30,10 @@ namespace BlazingProjects.Website.Pages
 
         protected async Task AddAsync()
         {
-            await ProjectRepository.AddAsync(ProjectAdd);
+            var project = await ProjectRepository.AddAsync(ProjectAdd);
             ProjectAdd = new ProjectAdd();
             Control.ClearScope();
+            NavigationManager.NavigateTo("/project/" + project.Id);
         }
 
     }
