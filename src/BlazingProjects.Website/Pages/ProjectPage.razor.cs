@@ -1,6 +1,7 @@
 ﻿using BlazingProjects.Core.Entities;
 using BlazingProjects.DataAccess.Repositories;
 using BlazingProjects.Website.Helpers;
+using BlazingProjects.Website.Models;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,9 @@ namespace BlazingProjects.Website.Pages
         [Inject]
         public NavigationManager NavigationManager { get; set; }
 
+        [Inject]
+        public NavigationContext NavigationContext { get; set; }
+
         protected Project Project { get; set; }
 
         private IProjectRepository ProjectRepository => Control.GetService<IProjectRepository>();
@@ -35,6 +39,7 @@ namespace BlazingProjects.Website.Pages
         protected async Task DeleteAsync()
         {
             await ProjectRepository.DeleteAsync(ProjectId);
+            await NavigationContext.OnMenuUpdatedAsync(Control);
             Control.ClearScope();
             NavigationManager.NavigateTo("/");
         }

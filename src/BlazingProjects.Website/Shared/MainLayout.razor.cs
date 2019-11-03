@@ -10,13 +10,5 @@ namespace BlazingProjects.Website.Shared
     public class MainLayoutVM : LayoutComponentBase
     {
 
-        public NavigationContext NavigationContext { get; set; }
-
-        protected override void OnInitialized()
-        {
-            NavigationContext = new NavigationContext();
-            base.OnInitialized();
-        }
-
     }
 }

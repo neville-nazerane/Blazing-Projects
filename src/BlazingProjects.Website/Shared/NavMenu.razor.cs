@@ -17,7 +17,7 @@ namespace BlazingProjects.Website.Shared
         [Inject]
         public ScopeControl Control { get; set; }
 
-        [CascadingParameter]
+        [Inject]
         public NavigationContext NavigationContext { get; set; }
 
         public IProjectRepository ProjectRepository => Control.GetService<IProjectRepository>();
@@ -53,6 +53,7 @@ namespace BlazingProjects.Website.Shared
         {
             if (control is null) control = Control;
             Projects = (await control.GetService<IProjectRepository>().GetAllAsync()).ToList();
+            StateHasChanged();
         }
 
     }

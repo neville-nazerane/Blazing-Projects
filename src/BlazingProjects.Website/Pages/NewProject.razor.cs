@@ -16,7 +16,7 @@ namespace BlazingProjects.Website.Pages
         [Inject]
         public ScopeControl Control { get; set; }
 
-        [CascadingParameter]
+        [Inject]
         public NavigationContext NavigationContext { get; set; }
 
         [Inject]

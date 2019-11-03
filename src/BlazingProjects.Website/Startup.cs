@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BlazingProjects.Website.Data;
 using BlazingProjects.Website.Helpers;
+using BlazingProjects.Website.Models;
 
 namespace BlazingProjects.Website
 {
@@ -36,7 +37,8 @@ namespace BlazingProjects.Website
 
             services.AddDatabaseConfig(Configuration.GetConnectionString("sqlDb"));
             services.AddRepositories()
-                    .AddTransient<ScopeControl>();
+                    .AddTransient<ScopeControl>()
+                    .AddScoped<NavigationContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
