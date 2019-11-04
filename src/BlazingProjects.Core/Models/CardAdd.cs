@@ -14,5 +14,7 @@ namespace BlazingProjects.Core.Models
         [MaxLength(300)]
         public string Description { get; set; }
 
+        public int CardSectionId { get; set; }
+
     }
 }

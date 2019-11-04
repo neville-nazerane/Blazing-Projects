@@ -14,12 +14,38 @@
 
     @foreach (var card in CardSection.Cards ?? new Card[] { })
     {
-        <div class="card col-sm-3">
+        <div class="card">
             <div class="body">
                 <div class="card-title h2">@card.Title</div>
                 <div class="card-text">@card.Description</div>
             </div>
         </div>
     }
+
+    <div class="card">
+        @if (CardAdd != null)
+        {
+        <EditForm Model=CardAdd OnValidSubmit=AddCardAsync>
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="input-group mb-3 input-group-sm">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Title</span>
+                </div>
+                <InputText @bind-Value=CardAdd.Title class="form-control" />
+            </div>
+
+            <div class="input-group mb-3 input-group-sm">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Description</span>
+                </div>
+                <InputTextArea @bind-Value=CardAdd.Description class="form-control" />
+            </div>
+
+            <input type="submit" class="btn btn-success btn-sm" value="Add" />
+        </EditForm>
+        }
+    </div>
 
 </div>

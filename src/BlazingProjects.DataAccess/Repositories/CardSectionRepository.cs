@@ -53,7 +53,7 @@ namespace BlazingProjects.DataAccess.Repositories
         {
             IQueryable<CardSection> sections = _context.CardSections.AsNoTracking()
                                                         .Where(s => s.ProjectId == projectId).OrderBy(c => c.Order);
-            if (includeCards) sections.Include(s => s.Cards);
+            if (includeCards) sections = sections.Include(s => s.Cards);
             return await sections.ToListAsync(cancellationToken);
         }
 

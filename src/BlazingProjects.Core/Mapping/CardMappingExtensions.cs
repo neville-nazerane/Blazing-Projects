@@ -13,7 +13,8 @@ namespace BlazingProjects.Core.Mapping
         {
             return new Card { 
                 Title = add.Title,
-                Description = add.Description
+                Description = add.Description,
+                CardSectionId = add.CardSectionId
             };
         }
 

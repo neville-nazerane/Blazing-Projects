@@ -42,7 +42,6 @@ namespace BlazingProjects.Website.Pages
             var project = await ProjectRepository.AddAsync(ProjectAdd);
             ProjectAdd = new ProjectAdd();
             await NavigationContext.OnMenuUpdatedAsync(Control);
-            Control.ClearScope();
             NavigationManager.NavigateTo("/project/" + project.Id);
         }
 

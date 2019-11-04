@@ -21,7 +21,7 @@ namespace BlazingProjects.Core.Entities
 
         public DateTime? UpdatedOn { get; set; }
 
-        public IEnumerable<Card> Cards { get; set; }
+        public ICollection<Card> Cards { get; set; }
 
         [Required]
         public int ProjectId { get; set; }

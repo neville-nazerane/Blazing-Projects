@@ -25,7 +25,7 @@ namespace BlazingProjects.DataAccess.Repositories
         {
             var card = toAdd.ToEntity();
             card.CreatedOn = DateTime.UtcNow;
-            card.Order = await _context.Cards.DefaultIfEmpty().MaxAsync(c => c.Order, cancellationToken) + 1;
+            card.Order = await _context.Cards.MaxAsync(c => (int?)c.Order, cancellationToken) ?? 0 + 1;
             await _context.AddAsync(card, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
             return card;
