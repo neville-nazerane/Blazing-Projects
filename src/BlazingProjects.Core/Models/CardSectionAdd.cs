@@ -11,5 +11,7 @@ namespace BlazingProjects.Core.Models
         [Required, MaxLength(60)]
         public string Title { get; set; }
 
+        public int ProjectId { get; set; }
+
     }
 }

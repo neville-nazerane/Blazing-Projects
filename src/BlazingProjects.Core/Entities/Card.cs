@@ -24,7 +24,8 @@ namespace BlazingProjects.Core.Entities
 
         public DateTime? UpdatedOn { get; set; }
 
+        [Required]
+        public int CardSectionId { get; set; }
         public CardSection CardSection { get; set; }
-
     }
 }

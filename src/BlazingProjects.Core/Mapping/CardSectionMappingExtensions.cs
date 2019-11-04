@@ -12,7 +12,8 @@ namespace BlazingProjects.Core.Mapping
         public static CardSection ToEntity(this CardSectionAdd add)
         {
             return new CardSection { 
-                Title = add.Title
+                Title = add.Title,
+                ProjectId = add.ProjectId
             };
         }
 

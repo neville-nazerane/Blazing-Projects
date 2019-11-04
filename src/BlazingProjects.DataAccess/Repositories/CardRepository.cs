@@ -50,8 +50,9 @@ namespace BlazingProjects.DataAccess.Repositories
         public async Task<Card> GetAsync(int id, CancellationToken cancellationToken = default)
             => await _context.Cards.AsNoTracking().SingleOrDefaultAsync(c => c.Id == id, cancellationToken);
 
-        public async Task<IEnumerable<Card>> GetAllAsync(CancellationToken cancellationToken = default)
-            => await _context.Cards.AsNoTracking().OrderBy(c => c.Order).ToListAsync(cancellationToken);
+        public async Task<IEnumerable<Card>> GetAllForSectionAsync(int sectionId, CancellationToken cancellationToken = default)
+            => await _context.Cards.AsNoTracking().Where(c => c.CardSectionId == sectionId)
+                            .OrderBy(c => c.Order).ToListAsync(cancellationToken);
 
     }
 }

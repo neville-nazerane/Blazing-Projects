@@ -23,7 +23,8 @@ namespace BlazingProjects.Core.Entities
 
         public IEnumerable<Card> Cards { get; set; }
 
+        [Required]
+        public int ProjectId { get; set; }
         public Project Project { get; set; }
-
     }
 }

@@ -7,11 +7,11 @@ using BlazingProjects.Core.Models;
 
 namespace BlazingProjects.DataAccess.Repositories
 {
-    interface ICardSectionRepository
+    public interface ICardSectionRepository
     {
         Task<CardSection> AddAsync(CardSectionAdd toAdd, CancellationToken cancellationToken = default);
         Task DeleteAsync(int id, CancellationToken cancellationToken = default);
-        Task<IEnumerable<CardSection>> GetAllAsync( CancellationToken cancellationToken = default);
+        Task<IEnumerable<CardSection>> GetAllByProjectAsync(int projectId, bool includeCards = false, CancellationToken cancellationToken = default);
         Task<CardSection> GetAsync(int id, CancellationToken cancellationToken = default);
         Task<CardSection> UpdateAsync(CardSectionUpdate toUpdate, CancellationToken cancellationToken = default);
     }
