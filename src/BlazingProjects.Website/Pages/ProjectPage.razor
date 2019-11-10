@@ -14,29 +14,31 @@ else
 </div>
 
 <div class="row">
-@foreach (var cardSection in CardSections ?? new CardSection[] { })
-{
-    <CardSectionListingComponent CardSection=cardSection 
-                                 OnDelete=@(() => OnDeleteSection(cardSection)) />
-}
-</div>
+    @foreach (var cardSection in CardSections ?? new CardSection[] { })
+    {
+        <CardSectionListingComponent CardSection=cardSection
+                                     OnDelete=@(() => OnDeleteSection(cardSection)) />
+    }
 
-<div>
-    <EditForm Model=CardSectionAdd OnValidSubmit=AddSectionAsync>
-        <DataAnnotationsValidator />
-        <ValidationSummary />
+    <div class="col-sm-4 p-3 bg-primary d-table">
 
-        <div class="input-group mb-3 input-group-sm">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Small</span>
-            </div>
-            <InputText @bind-Value=CardSectionAdd.Title class="form-control" />
-            <div class="input-group-append">
-                <button class="btn btn-success" type="submit">Add</button>
-            </div>
-        </div>
+            <EditForm Model=CardSectionAdd OnValidSubmit=AddSectionAsync>
+                <DataAnnotationsValidator />
+                <ValidationSummary />
 
-    </EditForm>
+                <div class="input-group mb-3 input-group-sm">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">New Section</span>
+                    </div>
+                    <InputText @bind-Value=CardSectionAdd.Title class="form-control" />
+                    <div class="input-group-append">
+                        <AddButtonComponent />
+                    </div>
+                </div>
+
+            </EditForm>
+    </div>
+
 </div>
 
 }

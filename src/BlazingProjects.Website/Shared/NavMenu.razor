@@ -1,7 +1,9 @@
 ﻿@inherits NavMenuVM
 
 <div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">Blazing Projects</a>
+    <a class="navbar-brand" href="">
+        Blazing Projects
+    </a>
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -20,14 +22,14 @@
     {
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="@($"project/{project.Id}")" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> @project.Title
+                <span class="oi oi-briefcase" aria-hidden="true"></span> @project.Title
             </NavLink>
         </li>
     }
 
     <li class="nav-item px-3 m-4">
         <NavLink class="nav-link" href="newProject" Match="NavLinkMatch.All">
-            <span class="oi oi-home" aria-hidden="true"></span> Add new project
+            <span class="oi oi-plus" aria-hidden="true"></span> Add new project
         </NavLink>
     </li>
 
