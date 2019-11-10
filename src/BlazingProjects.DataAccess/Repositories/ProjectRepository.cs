@@ -42,7 +42,10 @@ namespace BlazingProjects.DataAccess.Repositories
 
         public async Task DeleteAsync(int id, CancellationToken cancellationToken = default)
         {
-            var project = await _context.Projects.SingleAsync(p => p.Id == id, cancellationToken);
+            var project = await _context.Projects
+                                            .Include(p => p.CardSections)
+                                            .ThenInclude(s => s.Cards)
+                                            .SingleAsync(p => p.Id == id, cancellationToken);
             _context.Remove(project);
             await _context.SaveChangesAsync(cancellationToken);
         }

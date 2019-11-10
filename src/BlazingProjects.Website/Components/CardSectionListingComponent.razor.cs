@@ -50,6 +50,7 @@ namespace BlazingProjects.Website.Components
         public async Task AddCardAsync()
         {
             var added = await CardRepository.AddAsync(CardAdd);
+            if (CardSection.Cards == null) CardSection.Cards = new List<Card>();
             CardSection.Cards.Add(added);
             ResetCardAdd();
             Control.ClearScope();
